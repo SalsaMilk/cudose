@@ -1,96 +1,32 @@
 /*
- * I'm itching to write some code, so I guess my goal
- * is to have this parse mathematical expressions
- * and perform calculus and such blah blah
+ * Experimenting with parsing expressions and abstract syntax trees
  */
+
+#define DEBUG
 
 #include <stdio.h>
 #include <stdlib.h>
-//#include <math.h>
-//#include <string.h>
 
-#define isNum(x) x >= '0' && x <= '9'
+int tokenCount, nodeCount = 0;
 
-#define Byte unsigned char
-
-#define VARIABLE 'x'
-
-#define TOKEN_NUMBER    0
-#define TOKEN_VARIABLE  1
-#define TOKEN_OPERATOR  2
-#define TOKEN_GROUPER   3
-#define TOKEN_FUNCTION  4
-
-typedef struct {
-    Byte type;
-    char* value;
-} Token;
-
-int tokenize(const char* exp, Token* tokens) {
-    Token* token = tokens;
-    int count = 0;
-    while(*exp) {
-        if (isNum(*exp)) {
-            // start of a constant (10 digit limit)
-            char* constBuf = malloc(11);
-            constBuf[10] = '\0';
-            char* p = constBuf;
-            while(isNum(*exp)) {
-                if (!*p) {
-                    fprintf(stderr, "Number too big!");
-                    exit(-1);
-                }
-                *p++ = *exp++;
-            }
-            *p = '\0';
-            Token t = { .type = TOKEN_NUMBER, .value = constBuf};
-            *token = t;
-            exp--;
-        }
-        else if (*exp == VARIABLE) {
-            char* str = calloc(2, 1);
-            str[0] = VARIABLE;
-            Token t = { .type = TOKEN_VARIABLE, .value = str};
-            *token = t;
-        }
-        else if (*exp == '(' || *exp == ')') {
-            char* str = calloc(2, 1);
-            str[0] = *exp;
-            Token t = { .type = TOKEN_GROUPER, .value = str};
-            *token = t;
-        }
-        else if (*exp == '+' || *exp == '-' || *exp == '*' || *exp == '/' || *exp == '^') {
-            char* str = calloc(2, 1);
-            str[0] = *exp;
-            Token t = {.type = TOKEN_OPERATOR, .value = str};
-            *token = t;
-        }
-        else if (*exp == ' ') {
-            exp++;
-            continue;
-        }
-        else {
-            fprintf(stderr, "Invalid glyph \"%c\"", *exp);
-            exit(-1);
-        }
-        exp++;
-        token++;
-        count++;
-    }
-    return count;
-}
+#include "lexer.h"
+#include "shuntingYard.h"
+#include "tree.h"
 
 int main() {
-    // f(x) / exp / function
-    const char* exp = "x^2 + 3*(x+12) - 95\0";
+    const char* exp = "(x+2)*(x-9)^67*3+x";
+    printf("Expression: %s", exp);
 
     Token tokens[30];
-    int tokenCount = tokenize(exp, tokens);
+    tokenCount = tokenize(exp, tokens);
 
+/*
+#ifdef DEBUG
+    printf("Tokenized expression:\n");
     for (int i = 0; i < tokenCount; i++) {
         printf("{Type: ");
         switch (tokens[i].type) {
-            case TOKEN_NUMBER:
+            case TOKEN_CONSTANT:
                 printf("'number'");
                 break;
             case TOKEN_VARIABLE:
@@ -108,10 +44,35 @@ int main() {
             default:
                 break;
         }
-        printf(", Value: '%s'}\n", tokens[i].value);
+        printf(",\tValue: '%s'}\n", tokens[i].value);
+    }
+#endif
+ */
+
+    Token shuntingYardOutput[30];
+    shuntingYard(tokens, shuntingYardOutput);
+
+    // Reverse the array
+    Token transformedExpression[30];
+    for (int i = 0; i < nodeCount; i++) {
+        transformedExpression[i] = shuntingYardOutput[nodeCount - i - 1];
     }
 
-    for (int i = 0; i < tokenCount; ++i)
+#ifdef DEBUG
+    printf("\nTransformed expression: ");
+    for (int i = 0; i < nodeCount; i++)
+        printf("%s ", transformedExpression[i].value);
+    printf("\n\n");
+#endif
+
+    expPtr = transformedExpression;
+    Node* abstractSyntaxTree = tree();
+
+#ifdef DEBUG
+    displayTree(abstractSyntaxTree, 0);
+#endif
+
+    for (int i = 0; i < tokenCount; i++)
         free(tokens[i].value);
 
     return 0;

@@ -3,4 +3,4 @@ project(cudose C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(cudose main.c)
+add_executable(cudose main.c lexer.h tree.h shuntingYard.h)
