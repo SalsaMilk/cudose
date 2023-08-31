@@ -12,15 +12,15 @@ Token* expPtr;
 Node* tree() {
     Node* node = malloc(sizeof(Node));
     node->token = *expPtr;
-    switch (expPtr->type) {
+    switch (expPtr++->type) {
         case TOKEN_VARIABLE:
         case TOKEN_CONSTANT:
             node->right = NULL;
             node->left = NULL;
             return node;
         case TOKEN_OPERATOR:
-            node->right = tree(++expPtr);
-            node->left = tree(++expPtr);
+            node->right = tree();
+            node->left = tree();
             return node;
         default:
             fprintf(stderr, "Unknown error");

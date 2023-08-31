@@ -33,19 +33,33 @@ struct Stack {
 struct Stack* createStack(unsigned capacity)
 {
     struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
+    if (stack == NULL) {
+        fprintf(stderr, "Memory allocation failed");
+        exit(-1);
+    }
+
     stack->capacity = capacity;
     stack->top = -1;
     stack->array = (Token*)malloc(stack->capacity * sizeof(Token));
+    if (stack->array == NULL) {
+        fprintf(stderr, "Memory allocation failed");
+        exit(-1);
+    }
+
     return stack;
 }
 
-// Stack is full when top is equal to the last index
-inline int isFull(struct Stack* stack)
+void deleteStack(struct Stack* stack) {
+    free(stack->array);
+    free(stack);
+}
+
+int isFull(struct Stack* stack)
 {
     return stack->top == stack->capacity - 1;
 }
 
-inline int isEmpty(struct Stack* stack)
+int isEmpty(struct Stack* stack)
 {
     return stack->top == -1;
 }
@@ -56,6 +70,7 @@ void push(struct Stack* stack, Token item)
         fprintf(stderr, "Stack overflow");
         exit(-1);
     }
+
     stack->array[++stack->top] = item;
 }
 
@@ -65,6 +80,7 @@ Token pop(struct Stack* stack)
         fprintf(stderr, "Stack underflow");
         exit(-1);
     }
+
     return stack->array[stack->top--];
 }
 
@@ -74,11 +90,12 @@ Token peek(struct Stack* stack)
         fprintf(stderr, "Can't peek at empty stack");
         exit(-1);
     }
+
     return stack->array[stack->top];
 }
 
 void shuntingYard(Token* t_exp, Token* out) {
-    struct Stack* operatorStack = createStack(30);
+    struct Stack* operatorStack = createStack(MAX_TOKENS);
     for (int i = 0; i < tokenCount; i++) {
         switch (t_exp[i].type) {
             case TOKEN_CONSTANT:
@@ -88,9 +105,9 @@ void shuntingYard(Token* t_exp, Token* out) {
             case TOKEN_OPERATOR:
                 if (!isEmpty(operatorStack)) {
                     while ((*peek(operatorStack).value != '(')
-                            && ((precedence(*peek(operatorStack).value) > precedence(*t_exp[i].value)) ||
-                            (((precedence(*peek(operatorStack).value) == precedence(*t_exp[i].value)) &&
-                            (*t_exp[i].value != '^'))))) {
+                           && ((precedence(*peek(operatorStack).value) > precedence(*t_exp[i].value)) ||
+                               (((precedence(*peek(operatorStack).value) == precedence(*t_exp[i].value)) &&
+                                 (*t_exp[i].value != '^'))))) {
                         out[nodeCount++] = pop(operatorStack);
                         if (isEmpty(operatorStack)) break;
                     }
@@ -117,8 +134,11 @@ void shuntingYard(Token* t_exp, Token* out) {
             fprintf(stderr, "Mismatched parenthesis");
             exit(-1);
         }
+
         out[nodeCount++] = pop(operatorStack);
     }
+
+    deleteStack(operatorStack);
 }
 
 #endif //CUDOSE_SHUNTINGYARD_H

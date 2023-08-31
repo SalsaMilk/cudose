@@ -1,27 +1,21 @@
-/*
- * Experimenting with parsing expressions and abstract syntax trees
- */
-
 #define DEBUG
+#define Byte unsigned char
+#define MAX_TOKENS 30
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_gfxPrimitives.h>
 
 int tokenCount, nodeCount = 0;
 
 #include "lexer.h"
 #include "shuntingYard.h"
 #include "tree.h"
+#include "evaluate.h"
 
-int main() {
-    const char* exp = "(x+2)*(x-9)^67*3+x";
-    printf("Expression: %s", exp);
-
-    Token tokens[30];
-    tokenCount = tokenize(exp, tokens);
-
-/*
 #ifdef DEBUG
+void debug_print_tokens(Token tokens[]) {
     printf("Tokenized expression:\n");
     for (int i = 0; i < tokenCount; i++) {
         printf("{Type: ");
@@ -46,20 +40,34 @@ int main() {
         }
         printf(",\tValue: '%s'}\n", tokens[i].value);
     }
+}
 #endif
- */
 
-    Token shuntingYardOutput[30];
+int main() {
+    const char* exp = "(x-13.76765)/(2x-9.5)^3*7+x";
+
+#ifdef DEBUG
+    printf("f(x) = %s\n\n", exp);
+#endif
+
+    Token tokens[MAX_TOKENS];
+    tokenCount = tokenize(exp, tokens);
+
+#ifdef DEBUG
+    debug_print_tokens(tokens);
+#endif
+
+    Token shuntingYardOutput[MAX_TOKENS];
     shuntingYard(tokens, shuntingYardOutput);
 
     // Reverse the array
-    Token transformedExpression[30];
+    Token transformedExpression[MAX_TOKENS];
     for (int i = 0; i < nodeCount; i++) {
         transformedExpression[i] = shuntingYardOutput[nodeCount - i - 1];
     }
 
 #ifdef DEBUG
-    printf("\nTransformed expression: ");
+    printf("\nTokens in Łukasiewicz notation: ");
     for (int i = 0; i < nodeCount; i++)
         printf("%s ", transformedExpression[i].value);
     printf("\n\n");
@@ -70,6 +78,8 @@ int main() {
 
 #ifdef DEBUG
     displayTree(abstractSyntaxTree, 0);
+
+    printf("\nf(2) = %f", evaluate(abstractSyntaxTree, 2));
 #endif
 
     for (int i = 0; i < tokenCount; i++)
