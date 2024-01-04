@@ -24,7 +24,7 @@ void handle_number(const char** exp, Token* token) {
     bool hasDecimal = false;
 
     while(IS_NUMBER(**exp) || **exp == '.') {
-        if (*(*exp) == '.') {
+        if (**exp == '.') {
             if (hasDecimal) {
                 fprintf(stderr, "Invalid number with multiple decimals!");
                 exit(-1);
@@ -91,5 +91,34 @@ int tokenize(const char* exp, Token* tokens) {
     }
     return count;
 }
+
+#ifdef DEBUG
+void debug_print_tokens(Token tokens[]) {
+    printf("Tokenized expression:\n");
+    for (int i = 0; i < tokenCount; i++) {
+        printf("{Type: ");
+        switch (tokens[i].type) {
+            case TOKEN_CONSTANT:
+                printf("'number'");
+                break;
+            case TOKEN_VARIABLE:
+                printf("'variable'");
+                break;
+            case TOKEN_OPERATOR:
+                printf("'operator'");
+                break;
+            case TOKEN_GROUPER:
+                printf("'grouper'");
+                break;
+            case TOKEN_FUNCTION:
+                printf("'function'");
+                break;
+            default:
+                break;
+        }
+        printf(",\tValue: '%s'}\n", tokens[i].value);
+    }
+}
+#endif //DEBUG
 
 #endif //CUDOSE_LEXER_H

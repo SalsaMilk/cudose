@@ -6,10 +6,10 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.21"
+						"string" : "3.26"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "cudose::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-cudose-Debug-5ea24b5b2268cf6e58bf.json",
+					"jsonFile" : "target-cudose-Debug-53c5f656e59d452fbdb2.json",
 					"name" : "cudose",
 					"projectIndex" : 0
 				}
@@ -49,12 +49,12 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/mitch/Documents/GitHub/cudose/cmake-build-debug",
-		"source" : "C:/Users/mitch/Documents/GitHub/cudose"
+		"build" : "/home/mitch/git/cudose/cmake-build-debug",
+		"source" : "/home/mitch/git/cudose"
 	},
 	"version" : 
 	{
 		"major" : 2,
-		"minor" : 3
+		"minor" : 6
 	}
 }

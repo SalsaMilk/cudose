@@ -2,6 +2,22 @@
 	"entries" : 
 	[
 		{
+			"name" : "CMAKE_ADDR2LINE",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/addr2line"
+		},
+		{
 			"name" : "CMAKE_AR",
 			"properties" : 
 			[
@@ -15,7 +31,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.28.29333/bin/Hostx86/x64/lib.exe"
+			"value" : "/usr/bin/ar"
 		},
 		{
 			"name" : "CMAKE_BUILD_TYPE",
@@ -39,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/mitch/Documents/GitHub/cudose/cmake-build-debug"
+			"value" : "/home/mitch/git/cudose/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -63,7 +79,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "21"
+			"value" : "27"
 		},
 		{
 			"name" : "CMAKE_CACHE_PATCH_VERSION",
@@ -75,7 +91,19 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "1"
+			"value" : "8"
+		},
+		{
+			"name" : "CMAKE_COLOR_DIAGNOSTICS",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Enable colored diagnostics throughout."
+				}
+			],
+			"type" : "BOOL",
+			"value" : "ON"
 		},
 		{
 			"name" : "CMAKE_COMMAND",
@@ -87,7 +115,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/mitch/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/213.6777.58/bin/cmake/win/bin/cmake.exe"
+			"value" : "/var/lib/snapd/snap/clion/261/bin/cmake/linux/x64/bin/cmake"
 		},
 		{
 			"name" : "CMAKE_CPACK_COMMAND",
@@ -99,7 +127,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/mitch/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/213.6777.58/bin/cmake/win/bin/cpack.exe"
+			"value" : "/var/lib/snapd/snap/clion/261/bin/cmake/linux/x64/bin/cpack"
 		},
 		{
 			"name" : "CMAKE_CTEST_COMMAND",
@@ -111,7 +139,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/mitch/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/213.6777.58/bin/cmake/win/bin/ctest.exe"
+			"value" : "/var/lib/snapd/snap/clion/261/bin/cmake/linux/x64/bin/ctest"
 		},
 		{
 			"name" : "CMAKE_C_COMPILER",
@@ -126,8 +154,40 @@
 					"value" : "C compiler"
 				}
 			],
+			"type" : "STRING",
+			"value" : "/usr/bin/cc"
+		},
+		{
+			"name" : "CMAKE_C_COMPILER_AR",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "A wrapper around 'ar' adding the appropriate '--plugin' option for the GCC compiler"
+				}
+			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.28.29333/bin/Hostx86/x64/cl.exe"
+			"value" : "/usr/bin/gcc-ar"
+		},
+		{
+			"name" : "CMAKE_C_COMPILER_RANLIB",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "A wrapper around 'ranlib' adding the appropriate '--plugin' option for the GCC compiler"
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/gcc-ranlib"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS",
@@ -143,7 +203,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/DWIN32 /D_WINDOWS"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_C_FLAGS_DEBUG",
@@ -159,7 +219,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/Zi /Ob0 /Od /RTC1"
+			"value" : "-g"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS_MINSIZEREL",
@@ -175,7 +235,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/O1 /Ob1 /DNDEBUG"
+			"value" : "-Os -DNDEBUG"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS_RELEASE",
@@ -191,7 +251,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/O2 /Ob2 /DNDEBUG"
+			"value" : "-O3 -DNDEBUG"
 		},
 		{
 			"name" : "CMAKE_C_FLAGS_RELWITHDEBINFO",
@@ -207,10 +267,10 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/Zi /O2 /Ob1 /DNDEBUG"
+			"value" : "-O2 -g -DNDEBUG"
 		},
 		{
-			"name" : "CMAKE_C_STANDARD_LIBRARIES",
+			"name" : "CMAKE_DLLTOOL",
 			"properties" : 
 			[
 				{
@@ -219,11 +279,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Libraries linked by default with all C applications."
+					"value" : "Path to a program."
 				}
 			],
-			"type" : "STRING",
-			"value" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib"
+			"type" : "FILEPATH",
+			"value" : "CMAKE_DLLTOOL-NOTFOUND"
 		},
 		{
 			"name" : "CMAKE_EXECUTABLE_FORMAT",
@@ -235,7 +295,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "Unknown"
+			"value" : "ELF"
 		},
 		{
 			"name" : "CMAKE_EXE_LINKER_FLAGS",
@@ -251,7 +311,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/machine:x64"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_EXE_LINKER_FLAGS_DEBUG",
@@ -267,7 +327,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/debug /INCREMENTAL"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_EXE_LINKER_FLAGS_MINSIZEREL",
@@ -283,7 +343,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/INCREMENTAL:NO"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_EXE_LINKER_FLAGS_RELEASE",
@@ -299,7 +359,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/INCREMENTAL:NO"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO",
@@ -315,7 +375,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/debug /INCREMENTAL"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_EXPORT_COMPILE_COMMANDS",
@@ -344,6 +404,18 @@
 			],
 			"type" : "INTERNAL",
 			"value" : ""
+		},
+		{
+			"name" : "CMAKE_FIND_PACKAGE_REDIRECTS_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Value Computed by CMake."
+				}
+			],
+			"type" : "STATIC",
+			"value" : "/home/mitch/git/cudose/cmake-build-debug/CMakeFiles/pkgRedirects"
 		},
 		{
 			"name" : "CMAKE_GENERATOR",
@@ -403,7 +475,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/mitch/Documents/GitHub/cudose"
+			"value" : "/home/mitch/git/cudose"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -415,7 +487,19 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "C:/Program Files (x86)/cudose"
+			"value" : "/usr/local"
+		},
+		{
+			"name" : "CMAKE_INSTALL_SO_NO_EXE",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Install .so files without execute permission."
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "0"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -431,7 +515,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.28.29333/bin/Hostx86/x64/link.exe"
+			"value" : "/usr/bin/ld"
 		},
 		{
 			"name" : "CMAKE_MAKE_PROGRAM",
@@ -443,7 +527,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "C:/Users/mitch/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/213.6777.58/bin/ninja/win/ninja.exe"
+			"value" : "/var/lib/snapd/snap/clion/261/bin/ninja/linux/x64/ninja"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -459,7 +543,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/machine:x64"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS_DEBUG",
@@ -475,7 +559,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/debug /INCREMENTAL"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL",
@@ -491,7 +575,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/INCREMENTAL:NO"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS_RELEASE",
@@ -507,7 +591,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/INCREMENTAL:NO"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO",
@@ -523,10 +607,10 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/debug /INCREMENTAL"
+			"value" : ""
 		},
 		{
-			"name" : "CMAKE_MT",
+			"name" : "CMAKE_NM",
 			"properties" : 
 			[
 				{
@@ -539,7 +623,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files (x86)/Windows Kits/10/bin/10.0.18362.0/x86/mt.exe"
+			"value" : "/usr/bin/nm"
 		},
 		{
 			"name" : "CMAKE_NUMBER_OF_MAKEFILES",
@@ -552,6 +636,38 @@
 			],
 			"type" : "INTERNAL",
 			"value" : "1"
+		},
+		{
+			"name" : "CMAKE_OBJCOPY",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/objcopy"
+		},
+		{
+			"name" : "CMAKE_OBJDUMP",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/objdump"
 		},
 		{
 			"name" : "CMAKE_PLATFORM_INFO_INITIALIZED",
@@ -606,43 +722,19 @@
 			"properties" : 
 			[
 				{
-					"name" : "HELPSTRING",
-					"value" : "noop for ranlib"
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : ":"
-		},
-		{
-			"name" : "CMAKE_RC_COMPILER",
-			"properties" : 
-			[
-				{
 					"name" : "ADVANCED",
 					"value" : "1"
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "RC compiler"
+					"value" : "Path to a program."
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "C:/Program Files (x86)/Windows Kits/10/bin/10.0.18362.0/x86/rc.exe"
+			"value" : "/usr/bin/ranlib"
 		},
 		{
-			"name" : "CMAKE_RC_COMPILER_WORKS",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : ""
-				}
-			],
-			"type" : "INTERNAL",
-			"value" : "1"
-		},
-		{
-			"name" : "CMAKE_RC_FLAGS",
+			"name" : "CMAKE_READELF",
 			"properties" : 
 			[
 				{
@@ -651,75 +743,11 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "Flags for Windows Resource Compiler during all build types."
+					"value" : "Path to a program."
 				}
 			],
-			"type" : "STRING",
-			"value" : "-DWIN32"
-		},
-		{
-			"name" : "CMAKE_RC_FLAGS_DEBUG",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Flags for Windows Resource Compiler during DEBUG builds."
-				}
-			],
-			"type" : "STRING",
-			"value" : "-D_DEBUG"
-		},
-		{
-			"name" : "CMAKE_RC_FLAGS_MINSIZEREL",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Flags for Windows Resource Compiler during MINSIZEREL builds."
-				}
-			],
-			"type" : "STRING",
-			"value" : ""
-		},
-		{
-			"name" : "CMAKE_RC_FLAGS_RELEASE",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Flags for Windows Resource Compiler during RELEASE builds."
-				}
-			],
-			"type" : "STRING",
-			"value" : ""
-		},
-		{
-			"name" : "CMAKE_RC_FLAGS_RELWITHDEBINFO",
-			"properties" : 
-			[
-				{
-					"name" : "ADVANCED",
-					"value" : "1"
-				},
-				{
-					"name" : "HELPSTRING",
-					"value" : "Flags for Windows Resource Compiler during RELWITHDEBINFO builds."
-				}
-			],
-			"type" : "STRING",
-			"value" : ""
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/readelf"
 		},
 		{
 			"name" : "CMAKE_ROOT",
@@ -731,7 +759,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "C:/Users/mitch/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/213.6777.58/bin/cmake/win/share/cmake-3.21"
+			"value" : "/var/lib/snapd/snap/clion/261/bin/cmake/linux/x64/share/cmake-3.27"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -747,7 +775,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/machine:x64"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS_DEBUG",
@@ -763,7 +791,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/debug /INCREMENTAL"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL",
@@ -779,7 +807,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/INCREMENTAL:NO"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS_RELEASE",
@@ -795,7 +823,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/INCREMENTAL:NO"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO",
@@ -811,7 +839,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/debug /INCREMENTAL"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_SKIP_INSTALL_RPATH",
@@ -859,7 +887,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "/machine:x64"
+			"value" : ""
 		},
 		{
 			"name" : "CMAKE_STATIC_LINKER_FLAGS_DEBUG",
@@ -926,6 +954,50 @@
 			"value" : ""
 		},
 		{
+			"name" : "CMAKE_STRIP",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "/usr/bin/strip"
+		},
+		{
+			"name" : "CMAKE_TAPI",
+			"properties" : 
+			[
+				{
+					"name" : "ADVANCED",
+					"value" : "1"
+				},
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a program."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "CMAKE_TAPI-NOTFOUND"
+		},
+		{
+			"name" : "CMAKE_UNAME",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "uname command"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "/usr/bin/uname"
+		},
+		{
 			"name" : "CMAKE_VERBOSE_MAKEFILE",
 			"properties" : 
 			[
@@ -942,6 +1014,18 @@
 			"value" : "FALSE"
 		},
 		{
+			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "linker supports push/pop state"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "TRUE"
+		},
+		{
 			"name" : "cudose_BINARY_DIR",
 			"properties" : 
 			[
@@ -951,7 +1035,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/mitch/Documents/GitHub/cudose/cmake-build-debug"
+			"value" : "/home/mitch/git/cudose/cmake-build-debug"
 		},
 		{
 			"name" : "cudose_IS_TOP_LEVEL",
@@ -975,7 +1059,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/mitch/Documents/GitHub/cudose"
+			"value" : "/home/mitch/git/cudose"
 		}
 	],
 	"kind" : "cache",

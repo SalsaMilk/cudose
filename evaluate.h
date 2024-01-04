@@ -1,14 +1,17 @@
 #include <math.h>
 
 float evaluate(Node* root, float x) {
-    if (root == NULL)
+    if (root == NULL) {
         return 0.0f;
+    }
 
-    if (root->token.type == TOKEN_CONSTANT)
+    if (root->token.type == TOKEN_CONSTANT) {
         return strtof(root->token.value, NULL);
+    }
 
-    if (root->token.type == TOKEN_VARIABLE)
+    if (root->token.type == TOKEN_VARIABLE) {
         return x;
+    }
 
     if (root->token.type == TOKEN_OPERATOR) {
         switch (root->token.value[0]) {

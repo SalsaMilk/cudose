@@ -4,35 +4,31 @@
 #ifndef CUDOSE_SHUNTINGYARD_H
 #define CUDOSE_SHUNTINGYARD_H
 
+struct Stack {
+    int top;
+    uint capacity;
+    Token* array;
+};
+
 Byte precedence(char operator) {
     switch (operator) {
         case '^':
             return 4;
-            break;
         case '*':
         case '/':
             return 3;
-            break;
         case '+':
         case '-':
             return 2;
-            break;
         default:
             fprintf(stderr, "Unknown error.");
             exit(-1);
-            break;
     }
 }
 
-struct Stack {
-    int top;
-    unsigned capacity;
-    Token* array;
-};
-
 struct Stack* createStack(unsigned capacity)
 {
-    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
+    struct Stack* stack = (struct Stack*) malloc(sizeof(struct Stack));
     if (stack == NULL) {
         fprintf(stderr, "Memory allocation failed");
         exit(-1);
@@ -40,7 +36,7 @@ struct Stack* createStack(unsigned capacity)
 
     stack->capacity = capacity;
     stack->top = -1;
-    stack->array = (Token*)malloc(stack->capacity * sizeof(Token));
+    stack->array = (Token*) malloc(stack->capacity * sizeof(Token));
     if (stack->array == NULL) {
         fprintf(stderr, "Memory allocation failed");
         exit(-1);
@@ -104,9 +100,9 @@ void shuntingYard(Token* t_exp, Token* out) {
                 continue;
             case TOKEN_OPERATOR:
                 if (!isEmpty(operatorStack)) {
-                    while ((*peek(operatorStack).value != '(')
-                           && ((precedence(*peek(operatorStack).value) > precedence(*t_exp[i].value)) ||
-                               (((precedence(*peek(operatorStack).value) == precedence(*t_exp[i].value)) &&
+                    while ((*peek(operatorStack).value != '(') &&
+                              ((precedence(*peek(operatorStack).value) > precedence(*t_exp[i].value)) ||
+                              (((precedence(*peek(operatorStack).value) == precedence(*t_exp[i].value)) &&
                                  (*t_exp[i].value != '^'))))) {
                         out[nodeCount++] = pop(operatorStack);
                         if (isEmpty(operatorStack)) break;
